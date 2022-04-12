@@ -1,0 +1,105 @@
+@keyframes like {
+    0%{
+       font-size: 20px;
+    }
+    1%{
+        color:gray;
+    }
+    25%{
+        font-size:30px;
+        
+    }
+    50%{
+        color:gray;
+    }
+    51%{
+        color:red
+    }
+    100%{
+        font-size:20px;
+        color:red;
+    }
+    
+}
+#new_post{
+    border-style:ridge;
+    padding:25px;
+    border-radius:5px;
+    
+}
+.body{
+    padding:8px;
+}
+#new_post_submit {
+    margin-top:10px;
+}
+.post{
+    border-style:ridge;
+    padding:10px;
+    margin-bottom: 15px;
+}
+.timestamp{
+    font-size: small;
+    color:gray;
+}
+.fa-solid,.fa-heart
+{
+    font-size: 20px;
+    animation-name:like;
+    animation-duration:1s;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+#profile_image{
+    height:300px;
+    border-radius: 90%;
+    margin-bottom:15px;
+}
+#details{
+    text-align:center;
+    border-style: ridge;
+    padding:10px;
+    margin-left:35%;
+    margin-right:35%;
+}
+.vl{
+    border-left:1px solid black;
+    height:100px;
+}
+#user_posts_h3{
+    margin-top:5%;
+    text-align: center;
+}
+#follow_unfollow{
+    margin-bottom:20px;
+}
+#follower{
+    font-size: large;
+    border-style:ridge;
+    padding:10px;
+}
+.error {
+    justify-content: center;
+    display: flex;
+    height: 100px;
+    align-items: center;
+    border-style: ridge;
+}
+.pagination{
+    margin-top:2%;
+}
+.editing{
+    margin-top:10px;
+}
+.all_posts{
+    display: block;
+}
+.edit_space{
+    display:none;
+}
+.post_info{
+    color:black;
+}
+.post_post{
+    margin-top: 5px;
+}

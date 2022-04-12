@@ -1,0 +1,64 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+<div id="details">
+
+    <img id="profile_image" src="https://images.unsplash.com/photo-1614414051203-03a7dc75eca5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80">
+
+    
+    <div id="follow_unfollow">
+        <form action="{% url 'profile' username %}" method="POST">
+            {% csrf_token %}
+            {% if profile_follow %}
+            <button type="submit" name= "follow" id="follow_button" class="btn btn-primary">Follow</button>
+            {% endif %}
+            {% if profile_unfollow %}
+            <button type="submit" name="unfollow" id="unfollow_button" class="btn btn-secondary">Unfollow</button>
+            {% endif %}
+        </form>
+    </div>
+  
+
+    <div id="follower">
+       <p><b>Followers | Following</b></p>  
+       <p>{{follower_count}} | {{following_count}}</p>
+    </div>
+
+</div>
+<div>
+    <u><h4 id="user_posts_h3" >User posts</h4></u>
+</div>
+
+{% if posts %}
+<div class="all_posts">
+    {% for post in posts%}
+    <div class="post">
+
+        <a class="post_info" href="{% url 'profile' post.user %}">{{post.user}}</a>
+        <div class="post_post" style="margin-bottom: 5px;">{{post.post}}</div>
+        <p class="timestamp">{{post.timestamp}}</p>
+        <i class="fa-solid fa-heart"></i>
+        <b class="like_count">{{post.likes}}</b>
+    </div>
+    {% endfor %}
+</div>
+
+
+<div class="pagination">
+    {% if posts.has_previous %}
+        <a class="page-link" href="?page={{ posts.previous_page_number }}">Previous</a>
+    {% endif %}
+
+    <div class="page-item disabled" >
+        <div class="page-link">Page-{{ posts.number }} of {{posts.paginator.num_pages}}</div>
+    </div>
+        
+    {% if posts.has_next %}
+        <a class="page-link" href="?page={{ posts.next_page_number }}">Next</a>
+    {% endif %}
+</div>
+{% else %}
+<div class="error"><h5>{{error}}</h5></div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+
+    <div id="new_post" class="mb-3" >
+        <h4>New post</h4>
+        <form action="{% url 'index' %}" id="form" method="POST">
+        {% csrf_token %}
+        <div>
+            <textarea class="form-control" type="text" id="new_post_field" autocomplete="off" name="input_value" autofocus></textarea>
+        </div>
+        <div id="new_post_submit">
+            <input class="btn btn-primary" type="submit" value="Post" id="new_post_submit_field" >
+        </div>
+    </form>
+    </div>
+
+
+    <div class="all_posts">
+        {% for post in posts%}
+        <div class="post">
+
+            <a class="post_info" href="{% url 'profile' post.user %}">{{post.user}}</a>
+            <div class="post_post" style="margin-bottom: 5px;">{{post.post}}</div>
+            <p class="timestamp">{{post.timestamp}}</p>
+            <i class="fa-solid fa-heart"></i>
+            <b class="like_count">{{post.likes}}</b>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="pagination">
+            {% if posts.has_previous %}
+                <a class="page-link" href="?page={{ posts.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            <div class="page-item disabled" >
+                <div class="page-link">Page-{{ posts.number }} of {{posts.paginator.num_pages}}</div>
+            </div>
+                
+            {% if posts.has_next %}
+                <a class="page-link" href="?page={{ posts.next_page_number }}">Next</a>
+            {% endif %}
+    </div>
+
+    
+{% endblock %}
